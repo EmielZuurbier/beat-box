@@ -334,22 +334,34 @@
         // THIS IS ACTIVATED WHEN THE AUDIOCONTEXT IS NOT SUPPORTED
         document.getElementById('form').className = 'form hidden';
         
-        // PLAY WITH AUDIOTAG
-        function playAudioTag(event) {
+        function playAudioTagBeat(event) {
             var audioPlayer = audios[event.target.id];
-            if (audioPlayer.playing) {
+            audioPlayer.currentTime = 0;
+            audioPlayer.play();
+            console.log(audioPlayer);
+            
+            event.preventDefault();
+        }
+        
+        // PLAY WITH AUDIOTAG
+        function playAudioTagMelody(event) {
+            var audioPlayer = audios[event.target.id];
+            if (!audioPlayer.paused) {
                 audioPlayer.pause();
             } else {
                 audioPlayer.play();
             }
+            console.log(audioPlayer.paused);
             event.preventDefault();
             event.returnValue = false;
         }
 
         // ADD EVENTLISTENERS FOR AUDIO TAGS
-        for (var i = 0; i < buttons.length; i += 1) {
-            buttons[i].addEventListener('click', playAudioTag, false);
+        for (var i = 0; i < buttons.length - 1; i += 1) {
+            buttons[i].addEventListener('click', playAudioTagBeat, false);
         }
+    
+        buttons[buttons.length - 1].addEventListener('click', playAudioTagMelody, false);
         
     } else {
         
