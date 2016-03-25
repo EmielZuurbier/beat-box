@@ -56,6 +56,10 @@
             }
         }(paths));
         
+        function test() {
+            alert("Something");
+        }
+        
         // BUFFER- AND HTTPREQUESTS WHICH CREATES AUDIONODES AND PUSHES THEM TO BUFFERLIST
         function loadBuffer(url, index) {
             var request = new XMLHttpRequest();
