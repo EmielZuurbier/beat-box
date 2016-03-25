@@ -16,8 +16,6 @@
             lowFilter = context.createBiquadFilter(),
             notchFilter = context.createBiquadFilter(),
             panFilter = context.createStereoPanner(),
-            convolver = context.createConvolver(),
-            convolverGain = context.createGain(),
             bufferList = [],
             paths = [],
             playing = [],
@@ -196,49 +194,110 @@
             event.preventDefault();
         }
         
+        function toggle(event) {
+            buttons[event.target.id].classList.toggle('active');
+        }
+        
         // ADD KEYBOARD CONTROLS
         function keypress(event) {
             var keyCode = event.keyCode;
             switch(keyCode) {
                 case 65:
                     event.target.id = 0;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 83:
                     event.target.id = 1;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 68:
                     event.target.id = 2;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 70:
                     event.target.id = 3;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 71:
                     event.target.id = 4;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 72:
                     event.target.id = 5;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 74:
                     event.target.id = 6;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 75:
                     event.target.id = 7;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 76:
                     event.target.id = 8;
+                    toggle(event);
                     createSound(event);
                     break;
                 case 32:
                     event.target.id = 9;
+                    toggle(event);
                     createMelody(event);
+                    break;
+            }
+        }
+        
+        // KEYBOARD UP FUNCTION TO SIMULATE BUTTON PRESS ANIMATION
+        function keypressUp(event) {
+            var keyCode = event.keyCode;
+            switch(keyCode) {
+                case 65:
+                    event.target.id = 0;
+                    toggle(event);
+                    break;
+                case 83:
+                    event.target.id = 1;
+                    toggle(event);
+                    break;
+                case 68:
+                    event.target.id = 2;
+                    toggle(event);
+                    break;
+                case 70:
+                    event.target.id = 3;
+                    toggle(event);
+                    break;
+                case 71:
+                    event.target.id = 4;
+                    toggle(event);
+                    break;
+                case 72:
+                    event.target.id = 5;
+                    toggle(event);
+                    break;
+                case 74:
+                    event.target.id = 6;
+                    toggle(event);
+                    break;
+                case 75:
+                    event.target.id = 7;
+                    toggle(event);
+                    break;
+                case 76:
+                    event.target.id = 8;
+                    toggle(event);
+                    break;
+                case 32:
+                    event.target.id = 9;
+                    toggle(event);
                     break;
             }
         }
@@ -267,6 +326,7 @@
         stop.addEventListener('click', stopSound, false);
         reset.addEventListener('click', resetControls, false);
         document.addEventListener('keydown', keypress, false);
+        document.addEventListener('keyup', keypressUp, false);
         
     } else if ('addEventListener' in window) {
 
