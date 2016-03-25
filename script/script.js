@@ -1,7 +1,6 @@
 // WEB AUDIO API - V2 - EMIEL ZUURBIER
 
 (function () {
-    'use strict';
     var buttons = document.querySelectorAll('.button-audio'),
         audios = document.querySelectorAll('audio');
     
@@ -55,10 +54,6 @@
                 loadBuffer(input[i], i);
             }
         }(paths));
-        
-        function test() {
-            alert("Something");
-        }
         
         // BUFFER- AND HTTPREQUESTS WHICH CREATES AUDIONODES AND PUSHES THEM TO BUFFERLIST
         function loadBuffer(url, index) {
