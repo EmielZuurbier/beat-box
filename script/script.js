@@ -1,6 +1,7 @@
 // WEB AUDIO API - V2 - EMIEL ZUURBIER
 
 (function () {
+    'use strict';
     var buttons = document.querySelectorAll('.button-audio'),
         audios = document.querySelectorAll('audio');
     
