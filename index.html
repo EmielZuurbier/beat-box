@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Beatboxer</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Emiel Zuurbier">
+        <meta name="description" content="An awesome beatbox for making your favourite beats. So awesome">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link href='https://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+    <body>
+        <header class="header">
+            <h1>Beatboxer</h1>
+        </header>
+        <main class="main">
+            <form class="form" id="form">
+                <fieldset>
+                    <legend>Controls</legend>
+                    <label for="volume">Gain</label>
+                    <input name="volume" id="volume" type="range" min="0" max="500" step="1" value="500">
+                    <label for="high-pass-filter">High Pass</label>
+                    <input name="high-pass-filter" id="high-pass-filter" type="range" min="0" max="10000" step="2" value="0">
+                    <label for="low-pass-filter">Low Pass</label>
+                    <input name="low-pass-filter" id="low-pass-filter" type="range" min="0" max="10000" step="2" value="10000">
+                    <label for="notch-filter">Notch</label>
+                    <input name="notch-filter" id="notch-filter" type="range" min="0" max="10000" step="2" value="0">
+                    <label for="pan-filter">Pan</label>
+                    <input name="pan-filter" id="pan-filter" type="range" min="-1" max="1" step="0.1" value="0">
+                    <label for="speed-filter">Melody speed</label>
+                    <input name="speed-filter" id="speed-filter" type="range" min="0.0625" max="0.9375" step="0.0001" value="0.46875">
+                    <button id="stop">Stop</button>
+                    <button id="reset">Reset</button>
+                    <p id="tempo-indicator" class="tempo-indicator"></p>
+                    <div id="tempo" class="tempo"></div>
+                </fieldset>
+            </form>
+            <ul class="button-list">
+                <li class="button-container">
+                    <a href="sounds/hihat-808.mp3" id="0" class="button-audio" target="_blank">HiHat</a>
+                    <audio src="sounds/hihat-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/openhat-808.mp3" id="1" class="button-audio" target="_blank">HiHat Open</a>
+                    <audio src="sounds/openhat-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/kick-808.mp3" id="2" class="button-audio" target="_blank">Kick</a>
+                    <audio src="sounds/kick-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/snare-808.mp3" id="3" class="button-audio" target="_blank">Snare</a>
+                    <audio src="sounds/snare-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/tom-808.mp3" id="4" class="button-audio" target="_blank">Tom</a>
+                    <audio src="sounds/tom-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/clap-808.mp3" id="5" class="button-audio" target="_blank">Clap</a>
+                    <audio src="sounds/clap-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/perc-808.mp3" id="6" class="button-audio" target="_blank">Perc</a>
+                    <audio src="sounds/perc-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/crash-808.mp3" id="7" class="button-audio" target="_blank">Crash</a>
+                    <audio src="sounds/crash-808.mp3" preload></audio>
+                </li>
+                <li class="button-container">
+                    <a href="sounds/cowbell-808.mp3" id="8" class="button-audio" target="_blank">Cowbell</a>
+                    <audio src="sounds/cowbell-808.mp3" preload></audio>
+                </li>
+                <li class="button-container large">
+                    <a href="sounds/dirty.mp3" id="9" class="button-audio" target="_blank">Melody</a>
+                    <audio src="sounds/dirty.mp3" preload loop></audio>
+                </li>
+<!--
+                <li class="button-container">
+                    <a href="sounds/kick-808.mp3" id="10" class="button-audio" target="_blank">Drum Loop</a>
+                </li>
+-->
+            </ul>
+        </main>
+        <script src="script/constructor.js"></script>
+        <script src="script/script.js"></script>
+    </body>
+</html>
