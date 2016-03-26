@@ -100,7 +100,6 @@ body {
     height: 100%;
     height: calc(100% - 3em);
     width: 100%;
-    padding: 0.5em;
     float: left;
 }
 
@@ -110,11 +109,9 @@ body {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
         -webkit-align-content: center;
         -ms-flex-line-pack: center;
         align-content: center;
@@ -126,10 +123,6 @@ body {
         -webkit-align-items: stretch;
         -ms-flex-align: stretch;
         align-items: stretch;
-        -webkit-box-flex: 1;
-        -webkit-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
     }
 }
 
@@ -154,6 +147,10 @@ body {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 20em;
+        -ms-flex: 1 1 20em;
+        flex: 1 1 20em;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
         -webkit-flex-direction: row;
@@ -166,9 +163,13 @@ body {
         -webkit-align-items: flex-start;
         -ms-flex-align: start;
         align-items: flex-start;
+        -webkit-align-content: flex-start;
+        -ms-flex-line-pack: start;
+        align-content: flex-start;
         box-shadow: inset 0 0.2em 0 0 #aaaaaa;
         border-radius: 0.4em;
         padding: 0.5em 0.5em 0.7em;
+        margin: 0.25em 0.5em 0.25em;
     }
 }
 
@@ -280,9 +281,13 @@ body {
 /* ============================================================================ FORMS */
 
 .form {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 20em;
+    -ms-flex: 1 1 20em;
+    flex: 1 1 20em;
     display: block;
     color: #ffffff;
-    margin-bottom: 0.5em;
+    margin: 0.25em 0.5em 0.25em;
     background-color: #BBBEC7;
     box-shadow: inset 0 0.2em 0 0 #aaaaaa;
     border-radius: 0.4em;
@@ -352,20 +357,20 @@ body {
     box-shadow: 0 0 0 0;
 }
 
+.tempo-container {
+    display: block;
+    float: right;
+}
+
 .tempo {
     display: block;
-    position: absolute;
-    right: 0;
-    bottom: 0;
     width: 1em;
     height: 1em;
     background-color: #828282;
     border-radius: 50%;
     box-shadow: inset 0 0.2em 0 0 #aaaaaa;
-/*
-    -webkit-animation: blinker 0.46875s infinite normal running;
-    animation: blinker 0.46875s infinite normal running;
-*/
+    float: right;
+    margin: 0.2em 0;
 }
 
 .tempo-indicator {
@@ -387,21 +392,88 @@ body {
     background: linear-gradient(#194A19, #282B27);
     position: relative;
     right: 0;
-    float: right;
     box-shadow: inset 0 0.2em 0 0 #aaaaaa;
     border-radius: 0.4em;
-    color: #259425;
+    color: #218C21;
+}
+
+.osc {
+    display: block;
+    position: relative;
+    height: 10em;
+    width: 100%;
+    box-shadow: inset 0 0.2em 0 0 #aaaaaa;
+    border-radius: 0.4em;
+    background: -webkit-linear-gradient(#194A19, #282B27);
+    background: linear-gradient(#194A19, #282B27);
+    float: left;
+    overflow: hidden;
+}
+
+.osc-marker {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #218C21;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    will-change: transform;
+    -webkit-transition: -webkit-transform 0s linear;
+    transition: -webkit-transform 0s linear;
+    transition: transform 0s linear;
+    transition: transform 0s linear, -webkit-transform 0s linear;
+    z-index: 99;
+}
+
+.osc-marker.hidden {
+    display: none;
+}
+
+.osc-marker.x {
+    width: 1px;
+    top: 0.2em;
+    height: calc(100% - 0.2em);
+}
+
+.osc-marker.y {
+    width: 100%;
+    height: 1px;
+}
+
+.osc-type {
+    display: block;
+    position: relative;
+    padding: 1.5em;
+    background-color: #b12828;
+    box-shadow: 0 0.2em 0 0 #7D1919;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 0.4em;
+    border: 0;
+    top: 0;
+    margin: 0.2em 0.5em 0.5em 0;
+    float: left;
+    height: 4.183em;
+}
+
+canvas {
+    position: relative;
+    top: 0.2em;
+    width: 100%;
+    height: calc(100% - 0.2em);
 }
 
 
+/* ============================================================================ ANIMATIONS */
 
 @-webkit-keyframes blinker {
     0%  { background-color: #8ed349; }
     10%  { background-color: #8ed349; }
     100% { background-color: #828282; }
 }
-
-
 
 @keyframes blinker {
     0%  { background-color: #8ed349; }
