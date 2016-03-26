@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Emiel Zuurbier">
-        <meta name="description" content="An awesome beatbox for making your favourite beats. So awesome">
+        <meta name="description" content="An awesome beatbox for making your favourite beats. So awesome.">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -36,8 +36,27 @@
                     <input name="speed-filter" id="speed-filter" type="range" min="0.0625" max="0.9375" step="0.0001" value="0.46875">
                     <button id="stop">Stop</button>
                     <button id="reset">Reset</button>
-                    <p id="tempo-indicator" class="tempo-indicator"></p>
-                    <div id="tempo" class="tempo"></div>
+                    <select id="oscillator-type" class="osc-type">
+                        <optgroup label="osc type">
+                            <option value="sine">Sine</option>
+                            <option value="square">Square</option>
+                            <option value="sawtooth">Sawtooth</option>
+                            <option value="triangle">Triangle</option>
+                        </optgroup>
+                    </select>
+                    <div class="tempo-container">
+                        <p id="tempo-indicator" class="tempo-indicator"></p>
+                        <div id="tempo" class="tempo"></div>
+                    </div>
+                    <div id="osc" class="osc">
+                        <div id="osc-marker-x" class="osc-marker hidden x" draggable="true">
+                        </div>
+                        <div id="osc-marker-y" class="osc-marker hidden y" draggable="true">
+                        </div>
+                        <canvas>
+                            <p class="error">Canvas not supported</p>
+                        </canvas>
+                    </div>
                 </fieldset>
             </form>
             <ul class="button-list">
