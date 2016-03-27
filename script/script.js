@@ -36,7 +36,7 @@
             canvasCtx = canvas.getContext('2d'),
             bufferList = [],
             paths = [],
-            playing = [],
+            playingArray = [],
             controls = document.querySelectorAll('input[type="range"]'),
             stop = document.getElementById('stop'),
             reset = document.getElementById('reset'),
@@ -72,7 +72,6 @@
         // CONFIGUR ANALYSER
         analyser.minDecibels = -90;
         analyser.maxDecibels = -10;
-        console.log(analyser.frequencyBinCount);
                 
         // GET LINKS FROM HREF ATTRIBUTES AND PUSH TO PATHS ARRAY
         for (var i = 0; i < buttons.length; i += 1) {
@@ -156,7 +155,7 @@
         // VISUALIZE WAVES
         // CODE FROM voice-change-o-matic BY mdn ON 
         // https://github.com/mdn/voice-change-o-matic/
-        function visualize() {
+        (function visualize() {
             var WIDTH = canvas.width,
                 HEIGHT = canvas.height;
             
@@ -206,17 +205,14 @@
             }
 
             draw();
-        }
-        
-        // START THE VIUSALIZER
-        visualize();
+        }());
         
         // STOP PLAYING
         function stopSound(event) {
-            for (var i = 0; i < playing.length; i += 1) {
-                playing[i].stop();
+            for (var i = 0; i < playingArray.length; i += 1) {
+                playingArray[i].stop();
             }
-            playing = [];
+            playingArray = [];
             tempoLight.removeAttribute('style');
             event.preventDefault();
         }
@@ -263,7 +259,7 @@
             melody.setSpeed(128);
             
             // PUSH AUDIOPLAYER TO THE CURRENTLY PLAYING ARRAY
-            playing.push(melody);
+            playingArray.push(melody);
             
             // START MELODY
             melody.start();
@@ -277,7 +273,7 @@
             lowFilter.frequency.value = controls[2].value;
             notchFilter.frequency.value = controls[3].value;
             panFilter.pan.value = controls[4].value;
-            playing[0].source.playbackRate.value = controls[5].value * 2.1333333333;
+            playingArray[0].source.playbackRate.value = controls[5].value * 2.1333333333;
             tempoLight.style.animation='blinker ' + (controls[5].getAttribute('max') - controls[5].value) + 's infinite normal running';
             tempoInd.innerHTML = Math.round((controls[5].value * 2.13333333333 * 60 * 2.13333333333));
         }
@@ -287,6 +283,12 @@
             var values = [500, 0, 10000, 0, 0, 0.46875];
             for (var i = 0; i < controls.length; i += 1) {
                 controls[i].value = values[i];
+            }
+            
+            if (typeof playingArray !== 'undefined' && playingArray.length > 0) {
+                tempoLight.style.animation='blinker 0.46875s infinite normal running';
+                tempoInd.innerHTML = 128;
+                playingArray[0].source.playbackRate.value = controls[5].value * 2.1333333333;
             }
             
             gainNode.gain.value = controls[0].value / 500;
@@ -314,21 +316,21 @@
                     oscTypeSelected, 
                     261.63, 
                     100, 
-                    analyser
+                    gainNode
                 );
 
                 var toneE = new Oscillator(
                     oscTypeSelected,
                     329.63,
                     100,
-                    analyser
+                    gainNode
                 );
 
                 var toneG = new Oscillator(
                     oscTypeSelected,
                     392.00,
                     100,
-                    analyser
+                    gainNode
                 );
                 
                 oscArray.push(toneC, toneE, toneG);
@@ -356,6 +358,7 @@
         
         // OSCILLATOR CONTROL
         function oscControl(event) {
+            console.log(event);
             var oscFreqValue = [261.63, 329.63, 392.00];
             
             oscMarkerX.style.transform = 'translate(' + event.layerX + 'px, ' + 0 + 'px)';
